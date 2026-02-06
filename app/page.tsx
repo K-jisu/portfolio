@@ -1,3 +1,15 @@
+import Navigation from '@/widgets/layout/ui/Navigation';
+
 export default function Home() {
-  return <main></main>;
+  return (
+    <div>
+      <Navigation />
+      <main>
+        {/* Hero Banner */}
+        <div>
+          
+        </div>
+      </main>
+    </div>
+  );
 }
