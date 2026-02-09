@@ -20,7 +20,32 @@ const ABOUT_SKILLS = [
   { icon: 'zod', label: 'Zod' },
   { icon: 'i18n', label: 'React i18next' },
   { icon: 'github', label: 'GitHub' },
-  { icon: 'supabase', label: 'Supa  base' },
+  { icon: 'supabase', label: 'Supabase' },
+];
+
+const ABOUT_CAREERS = [
+  {
+    title: 'Frontend Developer (계약)',
+    company: '엠유소프트',
+    period: '2025.10 - 2025.12',
+    details: [
+      '메이드존 홈페이지(교육플랫폼), 당재재(부동산), 루나폴(관광가이드) 프론트엔드 개발',
+      'Figma기반 디자인 퍼블리싱 진행',
+      'API 명세에 맞는 요청을 구현하고, 에러 상황에 따른 사용자 피드백 처리 로직을 구성',
+      '사용자 상태에 따라 다른 UX를 제공하는 비즈니스 로직 설계',
+      '카카오 OAuth 2.0 기반 소셜 로그인 기능 구현',
+      'Next.js, React.js, Typescript, TailwindCSS, Zustand',
+    ],
+  },
+  {
+    title: 'Frontend Developer (인턴)',
+    company: '엠유소프트',
+    period: '2025.09 - 2025.10',
+    details: [
+      'Figma 로 디자인된 페이지를 작업하기 전 타이포그래피를 Tailwind CSS에 사전 설정하여 비효율성을 제거',
+      'UI 개발 시 사전에 설정한 타이포그래피 적용으로 개발 시간을 20% 정도 단축',
+    ],
+  },
 ];
 
 const AboutSection = () => {
@@ -91,9 +116,6 @@ const AboutSection = () => {
                   <span className="material-symbols-outlined text-[#0dccf2] group-hover:scale-110 transition-transform">
                     {skill.label}
                   </span>
-                  {/* <span className="text-[10px] font-bold text-[#0dccf2]/60 uppercase tracking-tighter opacity-70 group-hover:opacity-100">
-                    {skill.label}
-                  </span> */}
                 </div>
               ))}
             </div>
@@ -117,90 +139,31 @@ const AboutSection = () => {
           <div className="relative">
             <div className="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#0dccf2] to-transparent opacity-20"></div>
             <div className="space-y-10">
-              {/* Item 1 */}
-              <div className="relative pl-12 md:pl-20 group">
-                <div className="absolute left-4 md:left-8 top-1 -translate-x-1/2 size-3 rounded-full bg-[#0dccf2] shadow-[0_0_10px_#0dccf2] z-10 border-2 border-[#101f22]"></div>
-                <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-2">
-                  <div>
-                    <h4 className="text-xl font-bold group-hover:text-[#0dccf2] transition-colors">
-                      Senior Frontend Engineer
-                    </h4>
-                    <p className="text-sm text-slate-400 font-bold">
-                      TechFlow Systems
-                    </p>
+              {ABOUT_CAREERS.map((item, index) => (
+                <div className="relative pl-12 md:pl-20 group" key={index}>
+                  <div className="absolute left-4 md:left-8 top-1 -translate-x-1/2 size-3 rounded-full bg-[#0dccf2] shadow-[0_0_10px_#0dccf2] z-10 border-2 border-[#101f22]"></div>
+                  <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-2">
+                    <div>
+                      <h4 className="text-xl font-bold group-hover:text-[#0dccf2] transition-colors">
+                        {item.title}
+                      </h4>
+                      <p className="text-sm text-slate-400 font-bold">
+                        {item.company}
+                      </p>
+                    </div>
+                    <span className="text-[#0dccf2]/60 font-mono text-xs tracking-widest mt-1 md:mt-0">
+                      {item.period}
+                    </span>
                   </div>
-                  <span className="text-[#0dccf2]/60 font-mono text-xs tracking-widest mt-1 md:mt-0">
-                    2022 - PRESENT
-                  </span>
-                </div>
-                <div className="p-5 rounded-xl bg-[rgba(34,66,73,0.2)] backdrop-blur-[12px] border border-[rgba(13,204,242,0.1)]">
-                  <ul className="text-sm text-slate-400 space-y-1 list-disc list-inside marker:text-[#0dccf2]/50">
-                    <li>
-                      Architected custom design systems for enterprise scale.
-                    </li>
-                    <li>Optimized Web Vitals by 40% across core products.</li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Item 2 */}
-              <div className="relative pl-12 md:pl-20 group">
-                <div className="absolute left-4 md:left-8 top-1 -translate-x-1/2 size-3 rounded-full bg-[#0dccf2]/40 z-10 border-2 border-[#101f22]"></div>
-                <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-2">
-                  <div>
-                    <h4 className="text-xl font-bold group-hover:text-[#0dccf2] transition-colors">
-                      UX/UI Developer
-                    </h4>
-                    <p className="text-sm text-slate-400 font-bold">
-                      CreativePulse Agency
-                    </p>
+                  <div className="p-5 rounded-xl bg-[rgba(34,66,73,0.2)] backdrop-blur-[12px] border border-[rgba(13,204,242,0.1)]">
+                    <ul className="text-sm text-slate-400 space-y-1 list-disc list-inside marker:text-[#0dccf2]/50">
+                      {item.details.map((detail, detailIndex) => (
+                        <li key={detailIndex}>{detail}</li>
+                      ))}
+                    </ul>
                   </div>
-                  <span className="text-[#0dccf2]/60 font-mono text-xs tracking-widest mt-1 md:mt-0">
-                    2020 - 2022
-                  </span>
                 </div>
-                <div className="p-5 rounded-xl bg-[rgba(34,66,73,0.2)] backdrop-blur-[12px] border border-[rgba(13,204,242,0.1)]">
-                  <ul className="text-sm text-slate-400 space-y-1 list-disc list-inside marker:text-[#0dccf2]/50">
-                    <li>
-                      Bridged the gap between high-fidelity design and
-                      production React code.
-                    </li>
-                    <li>
-                      Led frontend development for 15+ award-winning client
-                      sites.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Item 3 */}
-              <div className="relative pl-12 md:pl-20 group">
-                <div className="absolute left-4 md:left-8 top-1 -translate-x-1/2 size-3 rounded-full bg-[#0dccf2]/20 z-10 border-2 border-[#101f22]"></div>
-                <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-2">
-                  <div>
-                    <h4 className="text-xl font-bold group-hover:text-[#0dccf2] transition-colors">
-                      Frontend Developer
-                    </h4>
-                    <p className="text-sm text-slate-400 font-bold">
-                      PixelPerfect Studios
-                    </p>
-                  </div>
-                  <span className="text-[#0dccf2]/60 font-mono text-xs tracking-widest mt-1 md:mt-0">
-                    2018 - 2020
-                  </span>
-                </div>
-                <div className="p-5 rounded-xl bg-[rgba(34,66,73,0.2)] backdrop-blur-[12px] border border-[rgba(13,204,242,0.1)]">
-                  <ul className="text-sm text-slate-400 space-y-1 list-disc list-inside marker:text-[#0dccf2]/50">
-                    <li>
-                      Implemented responsive layouts with 100% pixel-perfection.
-                    </li>
-                    <li>
-                      Mastered state management and performance optimization
-                      basics.
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
