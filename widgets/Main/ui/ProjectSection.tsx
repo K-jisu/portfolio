@@ -51,6 +51,11 @@ const ProjectSection = () => {
     setIsModalOpen(true);
   };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectProject(null);
+  };
+
   return (
     <section id="projects" className="py-24 px-6 bg-black/5 scroll-mt-20">
       <div className="max-w-7xl mx-auto space-y-12">
@@ -79,7 +84,7 @@ const ProjectSection = () => {
         </div>
       </div>
       {isModalOpen && selectProject !== null && (
-        <ProjectModal id={selectProject} />
+        <ProjectModal id={selectProject} onClose={handleCloseModal} />
       )}
     </section>
   );
