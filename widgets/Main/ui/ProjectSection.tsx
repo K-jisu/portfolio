@@ -1,7 +1,11 @@
+'use client';
 import ProjectCard from '@/features/main/ui/ProjectCard';
+import ProjectModal from '@/features/main/ui/ProjectModal';
+import { useState } from 'react';
 
-const PROJECTS = [
+export const PROJECTS = [
   {
+    id: 1,
     title: '메이드존',
     skills: ['nextjs', 'typescript', 'tailwind', 'framer'],
     period: '2025.10 ~ 2025.12',
@@ -10,6 +14,7 @@ const PROJECTS = [
     imageUrl: 'madezone_desktop',
   },
   {
+    id: 2,
     title: '루나폴',
     skills: ['react', 'vite', 'typescript', 'tailwind', 'i18n'],
     period: '2025.10 ~ 2025.11',
@@ -18,7 +23,17 @@ const PROJECTS = [
     imageUrl: 'lunafall_mobile',
   },
   {
+    id: 3,
     title: '당재재',
+    skills: ['nextjs', 'typescript', 'tailwind', 'framer'],
+    period: '2025.11 ~ 2025.12',
+    description:
+      '체계적인 학습 관리 시스템과 전문 멘토링으로 학생들의 자기주도학습을 지원하는 프리미엄 독서실',
+    imageUrl: 'dangjaejae_desktop',
+  },
+  {
+    id: 4,
+    title: 'UUno',
     skills: ['nextjs', 'typescript', 'tailwind', 'framer'],
     period: '2025.11 ~ 2025.12',
     description:
@@ -28,6 +43,14 @@ const PROJECTS = [
 ];
 
 const ProjectSection = () => {
+  const [selectProject, setSelectProject] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProjectClick = (project: number) => {
+    setSelectProject(project);
+    setIsModalOpen(true);
+  };
+
   return (
     <section id="projects" className="py-24 px-6 bg-black/5 scroll-mt-20">
       <div className="max-w-7xl mx-auto space-y-12">
@@ -49,10 +72,15 @@ const ProjectSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {PROJECTS.map((project, index) => (
-            <ProjectCard key={index} {...project} />
+            <div key={index} onClick={() => handleProjectClick(project.id)}>
+              <ProjectCard {...project} />
+            </div>
           ))}
         </div>
       </div>
+      {isModalOpen && selectProject !== null && (
+        <ProjectModal id={selectProject} />
+      )}
     </section>
   );
 };
