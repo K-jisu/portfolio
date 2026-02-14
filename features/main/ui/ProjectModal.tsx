@@ -1,6 +1,5 @@
 'use client';
 
-import { PROJECTS } from '@/widgets/main/ui/ProjectSection';
 import {
   Carousel,
   CarouselContent,
@@ -8,8 +7,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/shared/ui/carousel';
-import Image from 'next/image';
 import { useEffect } from 'react';
+import { PROJECTS } from '../model/projects';
 
 type ProjectModalProps = {
   id: number;
