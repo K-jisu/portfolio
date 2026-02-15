@@ -6,7 +6,7 @@ type ModalStore = {
   closeModal: () => void;
 };
 
-const useModalStore = create<ModalStore>((set) => ({
+export const useModalStore = create<ModalStore>((set) => ({
   isModalOpen: false,
   selectProject: null,
   openModal: (id) => set({ isModalOpen: true, selectProject: id }),
