@@ -2,23 +2,10 @@
 import { PROJECTS } from '@/features/main/model/projects';
 import ProjectCard from '@/features/main/ui/ProjectCard';
 import ProjectModal from '@/features/main/ui/ProjectModal';
-import { useState } from 'react';
-
-
+import { useModalStore } from '@/shared/store/modalStore';
 
 const ProjectSection = () => {
-  const [selectProject, setSelectProject] = useState<number | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleProjectClick = (project: number) => {
-    setSelectProject(project);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectProject(null);
-  };
+  const { isModalOpen, selectProject, openModal, closeModal } = useModalStore();
 
   return (
     <section id="projects" className="py-24 px-6 bg-black/5 scroll-mt-20">
@@ -40,15 +27,15 @@ const ProjectSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROJECTS.map((project, index) => (
-            <div key={index} onClick={() => handleProjectClick(project.id)}>
+          {PROJECTS.map((project) => (
+            <div key={project.id} onClick={() => openModal(project.id)}>
               <ProjectCard {...project} />
             </div>
           ))}
         </div>
       </div>
       {isModalOpen && selectProject !== null && (
-        <ProjectModal id={selectProject} onClose={handleCloseModal} />
+        <ProjectModal id={selectProject} onClose={closeModal} />
       )}
     </section>
   );
