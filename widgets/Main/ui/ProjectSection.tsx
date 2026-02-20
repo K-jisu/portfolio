@@ -17,13 +17,6 @@ const ProjectSection = () => {
             </h2>
             <h3 className="text-4xl font-bold">Selected Projects</h3>
           </div>
-          <a
-            className="text-[#0dccf2] font-bold flex items-center gap-2 hover:underline"
-            href="#"
-          >
-            View All Archives{' '}
-            <span className="material-symbols-outlined">trending_flat</span>
-          </a>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
