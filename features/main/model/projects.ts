@@ -9,9 +9,12 @@ export const PROJECTS: Project[] = [
     description:
       '체계적인 학습 관리 시스템과 전문 멘토링으로 학생들의 자기주도학습을 지원하는 프리미엄 독서실',
     imageUrl: 'madezone_desktop',
+    company: '엠유소프트',
+    contibution: '프론트엔드(70%)',
+    role: 'Figma 기반 디자인 화면 구현, API 연동, 재사용 가능한 공통 컴포넌트 아키텍처 설계',
     members: 'FE 1명, BE 1명, Design 1명',
-    link: 'https://madezone.madeedu.co.kr/',
-    detail: [
+    url: 'https://madezone.madeedu.co.kr/',
+    details: [
       '메이드존 교육 그룹의 통합 웹 서비스 - 메인 홈페이지, 입시 컨설팅, 브랜드별 교육 서비스 프론트엔드 개발자로 프로젝트에 참여',
       'Next.js 의 middleware를 활용하여 멀티 도메인 브랜딩 시스템 (도메인별 브랜드 자동 감지) 개발',
       'API 명세에 맞는 요청을 구현하고, 에러 상황에 따른 사용자 피드백 처리 로직을 구성',
@@ -29,9 +32,12 @@ export const PROJECTS: Project[] = [
     description:
       'AI 음성 내레이션으로 공간의 세계관을 따라 걷듯 체험하게 하는 몰입형 오디오 가이드 서비스',
     imageUrl: 'lunafall_mobile',
+    company: '엠유소프트',
+    contibution: '프론트엔드(80%)',
+    role: 'Figma 기반 디자인 화면 구현, API 연동, 재사용 가능한 공통 컴포넌트 아키텍처 설계',
     members: 'FE 1명, BE 1명, Design 1명',
-    link: 'https://guide.lunafall.co.kr/',
-    detail: [
+    url: 'https://guide.lunafall.co.kr/',
+    details: [
       '루나폴 다국어 지원 관광 가이드 웹 애플리케이션 개발자로 프로젝트에 참여',
       'react-i18next를 활용하여 한국어/중국어/영어 지원 시스템 구축',
       'API 명세에 맞는 요청을 구현하고, 에러 상황에 따른 사용자 피드백 처리 로직을 구성',
@@ -46,9 +52,12 @@ export const PROJECTS: Project[] = [
     description:
       '체계적인 학습 관리 시스템과 전문 멘토링으로 학생들의 자기주도학습을 지원하는 프리미엄 독서실',
     imageUrl: 'dangjaejae_desktop',
+    company: '엠유소프트',
+    contibution: '프론트엔드(90%)',
+    role: 'Figma 기반 디자인 화면 구현, API 연동, 재사용 가능한 공통 컴포넌트 아키텍처 설계',
     members: 'FE 1명, BE 1명',
-    link: 'https://www.jaejaeinfo.com/',
-    detail: [
+    url: 'https://www.jaejaeinfo.com/',
+    details: [
       '부동산 재개발, 재건축 정보 플랫폼 프론트엔드 개발자로 프로젝트에 참여',
       'Zustand 기반 필터링, 사업지 비교 등 상태관리 시스템 구축',
       'API 명세에 맞는 요청을 구현하고, 에러 상황에 따른 사용자 피드백 처리 로직을 구성',
@@ -68,9 +77,12 @@ export const PROJECTS: Project[] = [
     description:
       '체계적인 학습 관리 시스템과 전문 멘토링으로 학생들의 자기주도학습을 지원하는 프리미엄 독서실',
     imageUrl: 'dangjaejae_desktop',
+    company: '팀 프로젝트',
+    contibution: '프론트엔드(40%)',
+    role: 'Figma 기반 디자인 화면 구현, API 연동, 재사용 가능한 공통 컴포넌트 아키텍처 설계',
     members: 'FE 4명, Design 2명',
-    link: 'https://www.uuno.kr/',
+    url: 'https://www.uuno.kr/',
     github: 'https://github.com/K-jisu/uuno/tree/main',
-    detail: [],
+    details: [],
   },
 ];

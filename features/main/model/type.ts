@@ -5,8 +5,11 @@ export interface Project {
   period: string;
   description: string;
   imageUrl: string;
+  company: string;
+  contibution: string;
+  role: string;
   members?: string;
-  link: string;
+  url: string;
   github?: string;
-  detail: string[];
+  details: string[];
 }
