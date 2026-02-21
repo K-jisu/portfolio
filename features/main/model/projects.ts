@@ -112,8 +112,14 @@ export const PROJECTS: Project[] = [
     period: '2025.04 ~ 2025.06',
     description:
       '인터랙티브한 디지털 명함을 쉽게 제작하고 공유할 수 있는 웹 플랫폼',
-    thumbnail: 'uuno',
-    desktopImages: [],
+    thumbnail: 'uuno/uuno',
+    desktopImages: [
+      'uuno/uuno',
+      'uuno/uuno-1',
+      'uuno/uuno-2',
+      'uuno/uuno-3',
+      'uuno/uuno-4',
+    ],
     company: '팀 프로젝트',
     contribution: '프론트엔드(40%)',
     role: 'Figma 기반 디자인 화면 구현, "Kakao, Google OAuth 2.0 기반 소셜 로그인 기능 구현, Konva.js를 활용한 명함 커스터마이징 기능 개발',
