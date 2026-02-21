@@ -1,10 +1,10 @@
-export const transformedSkilltoIcon = (skill: string) => {
+export const transformedSkillToIcon = (skill: string) => {
   switch (skill) {
     case 'Next.js':
       return 'nextjs';
     case 'TypeScript':
       return 'typescript';
-    case 'TailwinCSS':
+    case 'TailwindCSS':
       return 'tailwind';
     case 'Framer Motion':
       return 'framer';
