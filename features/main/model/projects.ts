@@ -98,7 +98,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 4,
-    title: 'UUno',
+    title: 'Uuno',
     skills: [
       'Next.js',
       'TypeScript',
