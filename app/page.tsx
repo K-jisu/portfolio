@@ -1,7 +1,7 @@
 import Header from '@/widgets/layout/ui/Header';
-import AboutSection from '@/widgets/main/ui/AboutSection';
-import HeroSection from '@/widgets/main/ui/HeroSection';
-import ProjectSection from '@/widgets/main/ui/ProjectSection';
+import AboutSection from '@/widgets/home/ui/AboutSection';
+import HeroSection from '@/widgets/home/ui/HeroSection';
+import ProjectSection from '@/widgets/home/ui/ProjectSection';
 
 export default function Home() {
   return (
