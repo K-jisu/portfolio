@@ -16,6 +16,7 @@ import {
   Building2,
   CalendarDays,
   Globe,
+  LinkIcon,
   Sparkles,
   Users,
   X,
@@ -54,6 +55,7 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
     members,
     url,
     github,
+    notion,
     details,
   } = project;
 
@@ -65,6 +67,21 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
 
   const images = desktopImages ?? mobileImages ?? [];
   const isMobileProject = !!mobileImages;
+
+  const hasUrlDetails = (detail: string) => {
+    const url = detail.split(',')[0];
+    const description = detail.split(',')[1];
+    return (
+      <div>
+        <Link href={url} target="_blank" className="underline">
+          <p className="break-keep border-l border-[#29535b] pl-3 text-slate-100/95">
+            <LinkIcon className="inline-block mr-1" size={16} />
+            {description}
+          </p>
+        </Link>
+      </div>
+    );
+  };
 
   return (
     <div
@@ -164,19 +181,26 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
                 </h2>
                 {details.length > 0 ? (
                   <ol className="space-y-4">
-                    {details.map((detail, index) => (
-                      <li
-                        className="flex items-start gap-3 text-[15px] leading-7 text-slate-100 md:text-base"
-                        key={`${title}-detail-${index}`}
-                      >
-                        <span className="mt-1 inline-flex shrink-0 text-xs font-semibold tracking-wide text-[#89eeff]">
-                          {(index + 1).toString().padStart(2, '0')}
-                        </span>
-                        <span className="break-keep border-l border-[#29535b] pl-3 text-slate-100/95">
-                          {detail}
-                        </span>
-                      </li>
-                    ))}
+                    {details.map((detail, index) => {
+                      const isUrlDetail = detail.includes('http');
+                      return (
+                        <li
+                          className="flex items-start gap-3 text-[15px] leading-7 text-slate-100 md:text-base"
+                          key={`${title}-detail-${index}`}
+                        >
+                          <span className="mt-1 inline-flex shrink-0 text-xs font-semibold tracking-wide text-[#89eeff]">
+                            {(index + 1).toString().padStart(2, '0')}
+                          </span>
+                          {isUrlDetail ? (
+                            hasUrlDetails(detail)
+                          ) : (
+                            <span className="break-keep border-l border-[#29535b] pl-3 text-slate-100/95">
+                              {detail}
+                            </span>
+                          )}
+                        </li>
+                      );
+                    })}
                   </ol>
                 ) : (
                   <p className="text-sm leading-6 text-slate-400">
@@ -247,8 +271,31 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
               rel="noopener noreferrer"
               className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[#2f5d66] bg-transparent px-5 py-2.5 text-sm font-semibold text-[#d5f2f8] transition-colors hover:bg-[#15353e] sm:w-auto"
             >
-              <Image src="/github.png" alt="GitHub" width={16} height={16} />
+              <Image
+                src="/github.png"
+                alt="GitHub"
+                width={16}
+                height={16}
+                className="brightness-0 invert opacity-95"
+              />
               View Repository
+            </Link>
+          )}
+          {notion && (
+            <Link
+              href={notion}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[#36545d] bg-[#13272f] px-5 py-2.5 text-sm font-semibold text-[#d9f3f9] transition-colors hover:bg-[#1b3741] sm:w-auto"
+            >
+              <Image
+                src="/notion.png"
+                alt="Notion"
+                width={16}
+                height={16}
+                className="brightness-0 invert opacity-95"
+              />
+              View Notion
             </Link>
           )}
           <Link
