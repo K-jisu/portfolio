@@ -45,7 +45,7 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
     skills,
     period,
     description,
-    imageUrl,
+    images,
     company,
     contibution,
     role,
@@ -55,7 +55,6 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
     details,
   } = project;
 
-  const projectImages = [imageUrl];
   const projectMeta = [
     { label: 'Company', value: company, icon: Building2 },
     { label: 'Team', value: members ?? '-', icon: Users },
@@ -64,28 +63,28 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 top-20 flex items-center justify-center bg-black/70 p-4 backdrop-blur-md md:p-8"
+      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/70 p-4 pt-28 backdrop-blur-sm md:p-8 md:pt-28"
       onClick={onClose}
     >
       <div
-        className="glass-modal relative flex max-h-[92vh] w-full max-w-6xl flex-col overflow-hidden rounded-2xl border border-[#24464d] bg-[#081316]/95 shadow-[0_20px_70px_rgba(0,0,0,0.55)]"
+        className="glass-modal relative flex max-h-[calc(100vh-7rem)] w-full max-w-[1040px] flex-col overflow-hidden rounded-2xl border border-[#284b52] bg-[#09161b]/95 shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
         onClick={(event) => event.stopPropagation()}
       >
-        <header className="flex flex-wrap items-start justify-between gap-4 border-b border-[#224249] px-6 py-5 md:px-8">
+        <header className="sticky top-0 z-10 flex flex-wrap items-start justify-between gap-4 border-b border-[#23444b] bg-[#0b1a20]/95 px-6 py-5 md:px-8">
           <div className="space-y-2">
-            <p className="text-xs font-semibold tracking-[0.18em] text-[#7be9ff]/80 uppercase">
+            <p className="text-xs font-semibold tracking-[0.18em] text-[#81e8ff]/80 uppercase">
               Selected Project
             </p>
-            <h1 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
+            <h1 className="text-3xl font-bold tracking-tight text-white md:text-[2rem]">
               {title}
             </h1>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#2f6670] bg-[#0c1d22] px-3 py-1 text-xs font-medium text-[#a8d4dd]">
-              <CalendarDays className="size-3.5 text-[#0dccf2]" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#3d7682] px-3 py-1 text-xs font-medium text-[#c9eff7]">
+              <CalendarDays className="size-3.5 text-[#3edbff]" />
               {period}
             </div>
           </div>
           <button
-            className="group flex size-10 items-center justify-center rounded-lg border border-transparent bg-[#224249] text-white transition-all hover:border-[#0dccf2]/50 hover:bg-[#0dccf2]/20"
+            className="group flex size-10 items-center justify-center rounded-lg border border-[#2f5d66] bg-[#112a31] text-white transition-colors hover:bg-[#173943]"
             aria-label="Close modal"
             onClick={onClose}
           >
@@ -94,24 +93,24 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
         </header>
 
         <div className="custom-scrollbar flex-1 overflow-y-auto">
-          <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-[#224249] bg-[#060f12] md:aspect-[21/9]">
+          <div className="relative h-[220px] w-full overflow-hidden border-b border-[#23444b] bg-[#071116] md:h-[330px]">
             <Carousel
               className="h-full w-full"
-              opts={{ loop: projectImages.length > 1 }}
+              opts={{ loop: images.length > 1 }}
             >
               <CarouselContent className="ml-0 h-full">
-                {projectImages.map((image) => (
-                  <CarouselItem key={image} className="pl-0">
+                {images.map((image) => (
+                  <CarouselItem key={image} className="h-full pl-0">
                     <div className="relative h-full w-full">
                       <Image
                         src={`/projects/${image}.png`}
                         alt={`${title} preview`}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 70vw"
-                        className="object-cover object-top"
+                        width={1584}
+                        height={869}
+                        className="h-full w-full object-cover object-center"
                         priority
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#081316] via-[#081316]/25 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#071318]/70 via-transparent to-transparent" />
                     </div>
                   </CarouselItem>
                 ))}
@@ -119,48 +118,50 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
 
               <CarouselPrevious
                 variant="ghost"
-                className="left-4 top-1/2 size-11 -translate-y-1/2 rounded-full border-none bg-black/45 text-white hover:bg-[#0dccf2]/20 hover:text-white"
+                className="left-4 top-1/2 size-9 -translate-y-1/2 rounded-full border border-[#2f5d66] bg-[#0d2329]/75 text-white hover:bg-[#173c46] hover:text-white disabled:opacity-30"
               />
               <CarouselNext
                 variant="ghost"
-                className="right-4 top-1/2 size-11 -translate-y-1/2 rounded-full border-none bg-black/45 text-white hover:bg-[#0dccf2]/20 hover:text-white"
+                className="right-4 top-1/2 size-9 -translate-y-1/2 rounded-full border border-[#2f5d66] bg-[#0d2329]/75 text-white hover:bg-[#173c46] hover:text-white disabled:opacity-30"
               />
             </Carousel>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 px-6 py-8 md:px-8 lg:grid-cols-[minmax(0,1.65fr)_minmax(280px,1fr)]">
+          <div className="grid grid-cols-1 gap-8 px-6 py-7 md:px-8 md:py-8 lg:grid-cols-[minmax(0,1.7fr)_minmax(270px,1fr)]">
             <div className="space-y-8">
               <section className="space-y-3">
-                <h2 className="text-xs font-semibold tracking-[0.18em] text-[#5be7ff] uppercase">
+                <h2 className="text-xs font-semibold tracking-[0.18em] text-[#74e9ff] uppercase">
                   Overview
                 </h2>
-                <p className="text-lg leading-8 text-slate-100">
+                <p className="max-w-3xl text-[17px] leading-8 text-slate-100">
                   {description}
                 </p>
               </section>
 
-              <section className="space-y-3">
-                <h2 className="text-xs font-semibold tracking-[0.18em] text-[#5be7ff] uppercase">
+              <section className="space-y-3 border-t border-[#1f3f46] pt-7">
+                <h2 className="text-xs font-semibold tracking-[0.18em] text-[#74e9ff] uppercase">
                   Role
                 </h2>
-                <p className="text-base leading-8 text-slate-200">{role}</p>
+                <p className="text-base leading-8 text-slate-100">{role}</p>
               </section>
 
-              <section className="space-y-4 border-l-2 border-[#0dccf2]/60 pl-5">
-                <h2 className="text-xs font-semibold tracking-[0.18em] text-[#5be7ff] uppercase">
+              <section className="space-y-4 border-t border-[#1f3f46] pt-7">
+                <h2 className="text-xs font-semibold tracking-[0.18em] text-[#74e9ff] uppercase">
                   Key Highlights
                 </h2>
                 {details.length > 0 ? (
-                  <ol className="space-y-3">
+                  <ol className="space-y-4">
                     {details.map((detail, index) => (
                       <li
                         className="flex items-start gap-3 text-[15px] leading-7 text-slate-100 md:text-base"
                         key={`${title}-detail-${index}`}
                       >
-                        <span className="mt-1 inline-flex size-6 shrink-0 items-center justify-center rounded-full border border-[#0dccf2]/40 bg-[#0b1e23] text-[11px] font-semibold text-[#7fefff]">
+                        <span className="mt-1 inline-flex shrink-0 text-xs font-semibold tracking-wide text-[#89eeff]">
                           {(index + 1).toString().padStart(2, '0')}
                         </span>
-                        <span className="break-keep">{detail}</span>
+                        <span className="break-keep border-l border-[#29535b] pl-3 text-slate-100/95">
+                          {detail}
+                        </span>
                       </li>
                     ))}
                   </ol>
@@ -172,44 +173,51 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
               </section>
             </div>
 
-            <aside className="space-y-5">
-              <section className="rounded-xl border border-[#23464d] bg-[#0b1a1e]/70 p-4">
-                <h2 className="mb-4 text-xs font-semibold tracking-[0.18em] text-[#5be7ff] uppercase">
+            <aside className="space-y-7 border-t border-[#1f3f46] pt-7 lg:border-t-0 lg:border-l lg:border-[#1f3f46] lg:pt-0 lg:pl-7">
+              <section className="space-y-3">
+                <h2 className="text-xs font-semibold tracking-[0.18em] text-[#74e9ff] uppercase">
                   Tech Stack
                 </h2>
                 <div className="flex flex-wrap gap-2.5">
                   {skills.map((skill) => (
                     <Badge
                       key={`${title}-${skill}`}
-                      className="rounded-md border border-[#0dccf2]/30 bg-[#0f2228] px-2.5 py-1.5 text-[10px] text-[#0dccf2]"
+                      className="rounded-full border border-[#2f5d66] bg-transparent px-2.5 py-1 text-[11px] font-medium text-[#cfeff5]"
                     >
                       <Image
                         alt={skill}
                         src={`/${skill}.png`}
-                        width={18}
-                        height={18}
+                        width={16}
+                        height={16}
                         className="rounded-sm"
                       />
+                      <span className="leading-none">{skill}</span>
                     </Badge>
                   ))}
                 </div>
               </section>
 
-              <section className="space-y-3 rounded-xl border border-[#23464d] bg-[#0b1a1e]/70 p-4">
-                {projectMeta.map((item) => {
+              <section className="space-y-2 border-t border-[#1f3f46] pt-6">
+                {projectMeta.map((item, index) => {
                   const Icon = item.icon;
                   return (
                     <div
-                      className="rounded-lg border border-[#1f3d44] bg-[#09161a] p-3"
+                      className={`flex items-start gap-2.5 py-2 ${
+                        index !== projectMeta.length - 1
+                          ? 'border-b border-[#1f3f46]'
+                          : ''
+                      }`}
                       key={item.label}
                     >
-                      <div className="mb-2 flex items-center gap-2 text-[11px] font-semibold tracking-[0.16em] text-[#7de6fa] uppercase">
-                        <Icon className="size-3.5 text-[#0dccf2]" />
-                        {item.label}
+                      <Icon className="mt-0.5 size-4 text-[#67e8ff]" />
+                      <div>
+                        <p className="text-[11px] font-semibold tracking-[0.16em] text-[#87e9ff] uppercase">
+                          {item.label}
+                        </p>
+                        <p className="text-sm leading-6 text-slate-100">
+                          {item.value}
+                        </p>
                       </div>
-                      <p className="text-sm leading-6 text-slate-200">
-                        {item.value}
-                      </p>
                     </div>
                   );
                 })}
@@ -218,12 +226,13 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
           </div>
         </div>
 
-        <footer className="flex flex-col items-stretch gap-3 border-t border-[#224249] bg-[#0b171b]/90 p-5 sm:flex-row sm:items-center sm:justify-end">
+        <footer className="flex flex-col items-stretch gap-3 border-t border-[#23444b] bg-[#0b1a20] p-4 md:p-5 sm:flex-row sm:items-center sm:justify-end">
           {github && (
             <Link
               href={github}
               target="_blank"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[#2e5d67] bg-[#0f2228] px-5 py-2.5 text-sm font-semibold text-[#9ceeff] transition-all hover:border-[#0dccf2]/70 hover:bg-[#123038] sm:w-auto"
+              rel="noopener noreferrer"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[#2f5d66] bg-transparent px-5 py-2.5 text-sm font-semibold text-[#d5f2f8] transition-colors hover:bg-[#15353e] sm:w-auto"
             >
               <Image src="/github.png" alt="GitHub" width={16} height={16} />
               View Repository
@@ -232,7 +241,8 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
           <Link
             href={url}
             target="_blank"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#0dccf2] px-5 py-2.5 text-sm font-semibold text-[#072229] transition-all hover:brightness-110 sm:w-auto"
+            rel="noopener noreferrer"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#26d6f5] px-5 py-2.5 text-sm font-semibold text-[#09242b] transition-colors hover:bg-[#49e0fa] sm:w-auto"
           >
             <Globe className="size-4" />
             Visit Website
