@@ -13,5 +13,6 @@ export interface Project {
   members?: string;
   url: string;
   github?: string;
+  notion?: string;
   details: string[];
 }
