@@ -1,6 +1,7 @@
 import { Badge } from '@/shared/ui/badge';
 import { Card, CardHeader } from '@/shared/ui/card';
 import Image from 'next/image';
+import { transformedSkilltoIcon } from '../model/transformSkillToIcon';
 
 type ProjectCardProps = {
   title: string;
@@ -30,12 +31,11 @@ const ProjectCard = (props: ProjectCardProps) => {
             >
               <Image
                 alt={skill}
-                src={`/${skill}.png`}
+                src={`/${transformedSkilltoIcon(skill)}.png`}
                 width={20}
                 height={20}
                 className="rounded-sm"
               />
-              {/* {skill} */}
             </Badge>
           ))}
         </div>

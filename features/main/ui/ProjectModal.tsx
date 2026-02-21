@@ -20,6 +20,7 @@ import {
   Users,
   X,
 } from 'lucide-react';
+import { transformedSkilltoIcon } from '../model/transformSkillToIcon';
 
 type ProjectModalProps = {
   id: number;
@@ -186,7 +187,7 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
                     >
                       <Image
                         alt={skill}
-                        src={`/${skill}.png`}
+                        src={`/${transformedSkilltoIcon(skill)}.png`}
                         width={16}
                         height={16}
                         className="rounded-sm"

@@ -4,11 +4,11 @@ export const PROJECTS: Project[] = [
   {
     id: 1,
     title: '메이드존',
-    skills: ['nextjs', 'typescript', 'tailwind', 'framer'],
+    skills: ['Next.js', 'TypeScript', 'TailwinCSS', 'Framer Motion'],
     period: '2025.10 ~ 2025.12',
     description:
       '체계적인 학습 관리 시스템과 전문 멘토링으로 학생들의 자기주도학습을 지원하는 프리미엄 독서실',
-    thumbnail: 'madezone_desktop',
+    thumbnail: 'madezone/madezone',
     images: [],
     company: '엠유소프트',
     contibution: '프론트엔드(70%)',
@@ -28,11 +28,11 @@ export const PROJECTS: Project[] = [
   {
     id: 2,
     title: '루나폴',
-    skills: ['react', 'vite', 'typescript', 'tailwind', 'i18n'],
+    skills: ['React', 'Vite', 'TypeScript', 'TailwinCSS', 'React-i18next'],
     period: '2025.10 ~ 2025.11',
     description:
       'AI 음성 내레이션으로 공간의 세계관을 따라 걷듯 체험하게 하는 몰입형 오디오 가이드 서비스',
-    thumbnail: 'lunafall_mobile',
+    thumbnail: 'lunafall/lunafall',
     images: [],
     company: '엠유소프트',
     contibution: '프론트엔드(80%)',
@@ -49,11 +49,18 @@ export const PROJECTS: Project[] = [
   {
     id: 3,
     title: '당재재',
-    skills: ['nextjs', 'typescript', 'tailwind', 'framer'],
+    skills: [
+      'Next.js',
+      'TypeScript',
+      'TailwinCSS',
+      'Zustand',
+      'React-hook-form',
+      'Zod',
+    ],
     period: '2025.11 ~ 2025.12',
     description:
       '체계적인 학습 관리 시스템과 전문 멘토링으로 학생들의 자기주도학습을 지원하는 프리미엄 독서실',
-    thumbnail: 'dangjaejae_desktop',
+    thumbnail: 'dangjaejae/dangjaejae',
     images: [],
     company: '엠유소프트',
     contibution: '프론트엔드(90%)',
@@ -75,11 +82,11 @@ export const PROJECTS: Project[] = [
   {
     id: 4,
     title: 'UUno',
-    skills: ['nextjs', 'typescript', 'tailwind', 'framer'],
+    skills: [],
     period: '2025.11 ~ 2025.12',
     description:
       '체계적인 학습 관리 시스템과 전문 멘토링으로 학생들의 자기주도학습을 지원하는 프리미엄 독서실',
-    thumbnail: 'uuno_desktop',
+    thumbnail: 'uuno',
     images: [],
     company: '팀 프로젝트',
     contibution: '프론트엔드(40%)',
