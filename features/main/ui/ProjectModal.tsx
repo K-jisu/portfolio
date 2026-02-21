@@ -20,7 +20,7 @@ import {
   Users,
   X,
 } from 'lucide-react';
-import { transformedSkilltoIcon } from '../model/transformSkillToIcon';
+import { transformedSkillToIcon } from '../model/transformSkillToIcon';
 
 type ProjectModalProps = {
   id: number;
@@ -46,9 +46,10 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
     skills,
     period,
     description,
-    images,
+    desktopImages,
+    mobileImages,
     company,
-    contibution,
+    contribution,
     role,
     members,
     url,
@@ -59,8 +60,11 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
   const projectMeta = [
     { label: 'Company', value: company, icon: Building2 },
     { label: 'Team', value: members ?? '-', icon: Users },
-    { label: 'Contribution', value: contibution, icon: Sparkles },
+    { label: 'Contribution', value: contribution, icon: Sparkles },
   ];
+
+  const images = desktopImages ?? mobileImages ?? [];
+  const isMobileProject = !!mobileImages;
 
   return (
     <div
@@ -94,24 +98,32 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
         </header>
 
         <div className="custom-scrollbar flex-1 overflow-y-auto">
-          <div className="relative h-[220px] w-full overflow-hidden border-b border-[#23444b] bg-[#071116] md:h-[330px]">
+          <div className="relative h-[220px] w-full overflow-hidden border-b border-[#23444b] bg-[#071116] md:h-[380px]">
             <Carousel
               className="h-full w-full"
               opts={{ loop: images.length > 1 }}
             >
               <CarouselContent className="ml-0 h-full">
-                {images.map((image) => (
-                  <CarouselItem key={image} className="h-full pl-0">
-                    <div className="relative h-full w-full">
-                      <Image
-                        src={`/projects/${image}.png`}
-                        alt={`${title} preview`}
-                        width={1584}
-                        height={869}
-                        className="h-full w-full object-cover object-center"
-                        priority
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#071318]/70 via-transparent to-transparent" />
+                {images.map((image, pairIndex) => (
+                  <CarouselItem
+                    key={`${title}-pair-${pairIndex}`}
+                    className="h-full basis-full pl-0"
+                  >
+                    <div className="flex h-full">
+                      <div
+                        key={image}
+                        className="relative h-full w-full overflow-hidden border-r border-[#163038] last:border-r-0"
+                      >
+                        <Image
+                          src={`/projects/${image}.png`}
+                          alt={`${title} preview`}
+                          width={1000}
+                          height={869}
+                          className={`${isMobileProject ? 'object-contain' : 'object-cover'} h-full w-full`}
+                          priority
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#071318]/55 via-transparent to-transparent" />
+                      </div>
                     </div>
                   </CarouselItem>
                 ))}
@@ -134,7 +146,7 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
                 <h2 className="text-xs font-semibold tracking-[0.18em] text-[#74e9ff] uppercase">
                   Overview
                 </h2>
-                <p className="max-w-3xl text-[17px] leading-8 text-slate-100">
+                <p className="max-w-3xl text-[17px] leading-8 text-slate-100 whitespace-normal break-keep">
                   {description}
                 </p>
               </section>
@@ -187,7 +199,7 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
                     >
                       <Image
                         alt={skill}
-                        src={`/${transformedSkilltoIcon(skill)}.png`}
+                        src={`/${transformedSkillToIcon(skill)}.png`}
                         width={16}
                         height={16}
                         className="rounded-sm"

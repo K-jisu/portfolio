@@ -5,9 +5,10 @@ export interface Project {
   period: string;
   description: string;
   thumbnail: string;
-  images: string[];
+  desktopImages?: string[];
+  mobileImages?: string[];
   company: string;
-  contibution: string;
+  contribution: string;
   role: string;
   members?: string;
   url: string;
