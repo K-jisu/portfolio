@@ -4,7 +4,8 @@ export interface Project {
   skills: string[];
   period: string;
   description: string;
-  imageUrl: string;
+  thumbnail: string;
+  images: string[];
   company: string;
   contibution: string;
   role: string;

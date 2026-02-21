@@ -8,7 +8,8 @@ export const PROJECTS: Project[] = [
     period: '2025.10 ~ 2025.12',
     description:
       '체계적인 학습 관리 시스템과 전문 멘토링으로 학생들의 자기주도학습을 지원하는 프리미엄 독서실',
-    imageUrl: 'madezone_desktop',
+    thumbnail: 'madezone_desktop',
+    images: [],
     company: '엠유소프트',
     contibution: '프론트엔드(70%)',
     role: 'Figma 기반 디자인 화면 구현, API 연동, 재사용 가능한 공통 컴포넌트 아키텍처 설계',
@@ -31,7 +32,8 @@ export const PROJECTS: Project[] = [
     period: '2025.10 ~ 2025.11',
     description:
       'AI 음성 내레이션으로 공간의 세계관을 따라 걷듯 체험하게 하는 몰입형 오디오 가이드 서비스',
-    imageUrl: 'lunafall_mobile',
+    thumbnail: 'lunafall_mobile',
+    images: [],
     company: '엠유소프트',
     contibution: '프론트엔드(80%)',
     role: 'Figma 기반 디자인 화면 구현, API 연동, 재사용 가능한 공통 컴포넌트 아키텍처 설계',
@@ -51,7 +53,8 @@ export const PROJECTS: Project[] = [
     period: '2025.11 ~ 2025.12',
     description:
       '체계적인 학습 관리 시스템과 전문 멘토링으로 학생들의 자기주도학습을 지원하는 프리미엄 독서실',
-    imageUrl: 'dangjaejae_desktop',
+    thumbnail: 'dangjaejae_desktop',
+    images: [],
     company: '엠유소프트',
     contibution: '프론트엔드(90%)',
     role: 'Figma 기반 디자인 화면 구현, API 연동, 재사용 가능한 공통 컴포넌트 아키텍처 설계',
@@ -76,7 +79,8 @@ export const PROJECTS: Project[] = [
     period: '2025.11 ~ 2025.12',
     description:
       '체계적인 학습 관리 시스템과 전문 멘토링으로 학생들의 자기주도학습을 지원하는 프리미엄 독서실',
-    imageUrl: 'dangjaejae_desktop',
+    thumbnail: 'uuno_desktop',
+    images: [],
     company: '팀 프로젝트',
     contibution: '프론트엔드(40%)',
     role: 'Figma 기반 디자인 화면 구현, API 연동, 재사용 가능한 공통 컴포넌트 아키텍처 설계',

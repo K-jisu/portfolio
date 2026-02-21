@@ -6,7 +6,7 @@ type ProjectCardProps = {
   title: string;
   skills: string[];
   description: string;
-  imageUrl: string;
+  thumbnail: string;
 };
 
 const ProjectCard = (props: ProjectCardProps) => {
@@ -18,7 +18,7 @@ const ProjectCard = (props: ProjectCardProps) => {
           className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
           width={400}
           height={225}
-          src={`/projects/${props.imageUrl}.png`}
+          src={`/projects/${props.thumbnail}.png`}
         />
       </div>
       <CardHeader className="p-6 space-y-3">
