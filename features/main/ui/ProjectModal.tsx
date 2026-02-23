@@ -74,7 +74,7 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
     return (
       <div>
         <Link href={url} target="_blank" className="underline">
-          <p className="break-keep border-l border-[#29535b] pl-3 text-slate-100/95">
+          <p className="break-keep border-l border-[#29535b] pl-3 text-slate-100/95 whitespace-normal break-keep">
             <LinkIcon className="inline-block mr-1" size={16} />
             {description}
           </p>
@@ -172,7 +172,9 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
                 <h2 className="text-xs font-semibold tracking-[0.18em] text-[#74e9ff] uppercase">
                   Role
                 </h2>
-                <p className="text-base leading-8 text-slate-100">{role}</p>
+                <p className="text-base leading-8 text-slate-100 whitespace-normal break-keep">
+                  {role}
+                </p>
               </section>
 
               <section className="space-y-4 border-t border-[#1f3f46] pt-7">
@@ -194,7 +196,7 @@ const ProjectModal = ({ id, onClose }: ProjectModalProps) => {
                           {isUrlDetail ? (
                             hasUrlDetails(detail)
                           ) : (
-                            <span className="break-keep border-l border-[#29535b] pl-3 text-slate-100/95">
+                            <span className="break-keep border-l border-[#29535b] pl-3 text-slate-100/95 whitespace-normal break-keep">
                               {detail}
                             </span>
                           )}

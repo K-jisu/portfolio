@@ -39,8 +39,12 @@ const ProjectCard = (props: ProjectCardProps) => {
             </Badge>
           ))}
         </div>
-        <h4 className="text-xl font-bold text-slate-100">{props.title}</h4>
-        <p className="text-sm text-slate-400">{props.description}</p>
+        <h4 className="text-xl font-bold text-slate-100 whitespace-normal break-keep">
+          {props.title}
+        </h4>
+        <p className="text-sm text-slate-400 whitespace-normal break-keep">
+          {props.description}
+        </p>
       </CardHeader>
     </Card>
   );
