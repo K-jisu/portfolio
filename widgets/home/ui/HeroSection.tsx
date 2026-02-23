@@ -1,33 +1,18 @@
 'use client';
 
+import {
+  floatLoop,
+  stagger,
+} from '@/lib/motion';
 import { ChevronsDown } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      delayChildren: 0.15,
-      staggerChildren: 0.14,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
-};
-
 const HeroSection = () => {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useReducedMotion() ?? false;
+  const { container: containerVariants, item: itemVariants } =
+    stagger(shouldReduceMotion);
+  const leftGlow = floatLoop(shouldReduceMotion, 18, -14, 10, 1.05);
+  const rightGlow = floatLoop(shouldReduceMotion, -16, 12, 11, 1.04);
 
   return (
     <section
@@ -37,29 +22,13 @@ const HeroSection = () => {
       <div className="pointer-events-none absolute inset-0 -z-10">
         <motion.div
           className="absolute left-1/2 top-24 h-72 w-72 -translate-x-[92%] rounded-full bg-[#0dccf2]/16 blur-[120px]"
-          animate={
-            shouldReduceMotion
-              ? { opacity: 1 }
-              : { x: [0, 18, 0], y: [0, -14, 0], scale: [1, 1.05, 1] }
-          }
-          transition={
-            shouldReduceMotion
-              ? { duration: 0 }
-              : { duration: 10, repeat: Infinity, ease: 'easeInOut' }
-          }
+          animate={leftGlow.animate}
+          transition={leftGlow.transition}
         />
         <motion.div
           className="absolute right-1/2 bottom-8 h-80 w-80 translate-x-[90%] rounded-full bg-[#0dccf2]/10 blur-[130px]"
-          animate={
-            shouldReduceMotion
-              ? { opacity: 1 }
-              : { x: [0, -16, 0], y: [0, 12, 0], scale: [1, 1.04, 1] }
-          }
-          transition={
-            shouldReduceMotion
-              ? { duration: 0 }
-              : { duration: 11, repeat: Infinity, ease: 'easeInOut' }
-          }
+          animate={rightGlow.animate}
+          transition={rightGlow.transition}
         />
       </div>
 

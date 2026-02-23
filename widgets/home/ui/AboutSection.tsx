@@ -1,5 +1,10 @@
 'use client';
 
+import {
+  fadeUp,
+  floatLoop,
+  sectionReveal,
+} from '@/lib/motion';
 import { motion, useReducedMotion } from 'motion/react';
 import Image from 'next/image';
 
@@ -51,22 +56,11 @@ const ABOUT_CAREERS = [
   },
 ];
 
-const easeOutExpo = [0.22, 1, 0.36, 1] as const;
-
 const AboutSection = () => {
-  const shouldReduceMotion = useReducedMotion();
-
-  const fadeUp = shouldReduceMotion
-    ? {
-        initial: { opacity: 1, y: 0 },
-        whileInView: { opacity: 1, y: 0 },
-        transition: { duration: 0 },
-      }
-    : {
-        initial: { opacity: 0, y: 24 },
-        whileInView: { opacity: 1, y: 0 },
-        transition: { duration: 0.7, ease: easeOutExpo },
-      };
+  const shouldReduceMotion = useReducedMotion() ?? false;
+  const fadeUpInView = fadeUp(shouldReduceMotion);
+  const sectionRevealInView = sectionReveal(shouldReduceMotion);
+  const backgroundFloat = floatLoop(shouldReduceMotion, 14, -10, 12, 1.04);
 
   return (
     <section
@@ -76,31 +70,20 @@ const AboutSection = () => {
       <div className="pointer-events-none absolute inset-0 -z-10">
         <motion.div
           className="absolute left-1/2 top-20 h-72 w-72 -translate-x-[85%] rounded-full bg-[#0dccf2]/12 blur-[120px]"
-          animate={
-            shouldReduceMotion
-              ? { opacity: 1 }
-              : { x: [0, 14, 0], y: [0, -10, 0], scale: [1, 1.04, 1] }
-          }
-          transition={
-            shouldReduceMotion
-              ? { duration: 0 }
-              : { duration: 12, repeat: Infinity, ease: 'easeInOut' }
-          }
+          animate={backgroundFloat.animate}
+          transition={backgroundFloat.transition}
         />
       </div>
 
       <motion.div
         className="max-w-6xl mx-auto space-y-24"
-        initial={shouldReduceMotion ? false : { opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.15 }}
-        transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6 }}
+        {...sectionRevealInView}
       >
         {/* About ME */}
         <motion.div className="space-y-12">
           <motion.div
             className="flex flex-col md:flex-row gap-8 items-center md:items-start"
-            {...fadeUp}
+            {...fadeUpInView}
             viewport={{ once: true, amount: 0.2 }}
           >
             <motion.div
@@ -123,7 +106,7 @@ const AboutSection = () => {
 
             <motion.div
               className="space-y-4 text-center md:text-left"
-              {...fadeUp}
+              {...fadeUpInView}
               viewport={{ once: true, amount: 0.2 }}
             >
               <h2 className="text-[#0dccf2] font-bold tracking-[0.3em] uppercase text-xs">
@@ -146,18 +129,13 @@ const AboutSection = () => {
                   <motion.span
                     key={index}
                     className="block mt-2"
-                    initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    {...fadeUp(
+                      shouldReduceMotion,
+                      0.1 + index * 0.1,
+                      14,
+                      0.45
+                    )}
                     viewport={{ once: true, amount: 0.6 }}
-                    transition={
-                      shouldReduceMotion
-                        ? { duration: 0 }
-                        : {
-                            delay: 0.1 + index * 0.1,
-                            duration: 0.45,
-                            ease: easeOutExpo,
-                          }
-                    }
                   >
                     {text}
                   </motion.span>
@@ -168,7 +146,7 @@ const AboutSection = () => {
 
           <motion.div
             className="space-y-6 pt-4"
-            {...fadeUp}
+            {...fadeUpInView}
             viewport={{ once: true, amount: 0.2 }}
           >
             <h4 className="font-bold text-sm uppercase tracking-widest flex items-center gap-2">
@@ -180,18 +158,13 @@ const AboutSection = () => {
                 <motion.div
                   key={skill.label}
                   className="p-4 rounded-xl flex flex-col items-center justify-center gap-2 group transition-all bg-[rgba(34,66,73,0.2)] backdrop-blur-[12px] border border-[rgba(13,204,242,0.1)] hover:border-[rgba(13,204,242,0.4)] hover:shadow-[0_0_20px_rgba(13,204,242,0.1)]"
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  {...fadeUp(
+                    shouldReduceMotion,
+                    0.05 + index * 0.035,
+                    16,
+                    0.45
+                  )}
                   viewport={{ once: true, amount: 0.4 }}
-                  transition={
-                    shouldReduceMotion
-                      ? { duration: 0 }
-                      : {
-                          delay: 0.05 + index * 0.035,
-                          duration: 0.45,
-                          ease: easeOutExpo,
-                        }
-                  }
                   whileHover={shouldReduceMotion ? undefined : { y: -3 }}
                 >
                   <Image
@@ -214,7 +187,7 @@ const AboutSection = () => {
         <motion.div
           id="career"
           className="pt-12"
-          {...fadeUp}
+          {...fadeUpInView}
           viewport={{ once: true, amount: 0.2 }}
         >
           <div className="flex items-center gap-4 mb-12">
@@ -236,18 +209,13 @@ const AboutSection = () => {
                 <motion.div
                   className="relative pl-12 md:pl-20 group"
                   key={index}
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  {...fadeUp(
+                    shouldReduceMotion,
+                    0.08 + index * 0.12,
+                    20,
+                    0.55
+                  )}
                   viewport={{ once: true, amount: 0.25 }}
-                  transition={
-                    shouldReduceMotion
-                      ? { duration: 0 }
-                      : {
-                          delay: 0.08 + index * 0.12,
-                          duration: 0.55,
-                          ease: easeOutExpo,
-                        }
-                  }
                 >
                   <div className="absolute left-4 md:left-8 top-1 -translate-x-1/2 size-3 rounded-full bg-[#0dccf2] shadow-[0_0_10px_#0dccf2] z-10 border-2 border-[#101f22]"></div>
                   <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-2">

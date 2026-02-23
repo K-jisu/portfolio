@@ -1,27 +1,21 @@
 'use client';
+import {
+  fadeUp,
+  floatLoop,
+  sectionReveal,
+} from '@/lib/motion';
 import { PROJECTS } from '@/features/main/model/projects';
 import ProjectCard from '@/features/main/ui/ProjectCard';
 import ProjectModal from '@/features/main/ui/ProjectModal';
 import { useModalStore } from '@/shared/store/modalStore';
 import { motion, useReducedMotion } from 'motion/react';
 
-const easeOutExpo = [0.22, 1, 0.36, 1] as const;
-
 const ProjectSection = () => {
   const { isModalOpen, selectProject, openModal, closeModal } = useModalStore();
-  const shouldReduceMotion = useReducedMotion();
-
-  const fadeUp = shouldReduceMotion
-    ? {
-        initial: { opacity: 1, y: 0 },
-        whileInView: { opacity: 1, y: 0 },
-        transition: { duration: 0 },
-      }
-    : {
-        initial: { opacity: 0, y: 24 },
-        whileInView: { opacity: 1, y: 0 },
-        transition: { duration: 0.7, ease: easeOutExpo },
-      };
+  const shouldReduceMotion = useReducedMotion() ?? false;
+  const fadeUpInView = fadeUp(shouldReduceMotion);
+  const sectionRevealInView = sectionReveal(shouldReduceMotion);
+  const backgroundFloat = floatLoop(shouldReduceMotion, 14, -12, 11, 1.04);
 
   return (
     <section
@@ -31,32 +25,25 @@ const ProjectSection = () => {
       <div className="pointer-events-none absolute inset-0 -z-10">
         <motion.div
           className="absolute left-1/2 top-16 h-72 w-72 -translate-x-[86%] rounded-full bg-[#0dccf2]/12 blur-[120px]"
-          animate={
-            shouldReduceMotion
-              ? { opacity: 1 }
-              : { x: [0, 14, 0], y: [0, -12, 0], scale: [1, 1.04, 1] }
-          }
-          transition={
-            shouldReduceMotion
-              ? { duration: 0 }
-              : { duration: 11, repeat: Infinity, ease: 'easeInOut' }
-          }
+          animate={backgroundFloat.animate}
+          transition={backgroundFloat.transition}
         />
       </div>
 
       <motion.div
         className="max-w-7xl mx-auto space-y-12"
-        initial={shouldReduceMotion ? false : { opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.15 }}
-        transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6 }}
+        {...sectionRevealInView}
       >
         <motion.div
           className="flex flex-col md:flex-row md:items-end justify-between gap-6"
-          {...fadeUp}
+          {...fadeUpInView}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <motion.div className="space-y-4" {...fadeUp} viewport={{ once: true }}>
+          <motion.div
+            className="space-y-4"
+            {...fadeUpInView}
+            viewport={{ once: true }}
+          >
             <h2 className="text-[#0dccf2] font-bold tracking-widest uppercase text-sm">
               03. Featured Work
             </h2>
@@ -69,18 +56,13 @@ const ProjectSection = () => {
             <motion.div
               key={project.id}
               onClick={() => openModal(project.id)}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              {...fadeUp(
+                shouldReduceMotion,
+                0.06 + index * 0.08,
+                20,
+                0.55
+              )}
               viewport={{ once: true, amount: 0.25 }}
-              transition={
-                shouldReduceMotion
-                  ? { duration: 0 }
-                  : {
-                      delay: 0.06 + index * 0.08,
-                      duration: 0.55,
-                      ease: easeOutExpo,
-                    }
-              }
               whileHover={shouldReduceMotion ? undefined : { y: -4 }}
             >
               <ProjectCard {...project} />
