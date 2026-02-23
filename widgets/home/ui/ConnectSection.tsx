@@ -1,0 +1,148 @@
+import {
+  ArrowUpRight,
+  Github,
+  Linkedin,
+  Mail,
+  Sparkles,
+  type LucideIcon,
+} from 'lucide-react';
+import Image from 'next/image';
+
+type ContactLink = {
+  label: string;
+  value: string;
+  href: string;
+  icon: string;
+  external?: boolean;
+  disabled?: boolean;
+};
+
+const CONTACT_LINKS: ContactLink[] = [
+  {
+    label: 'Email',
+    value: 'wltn7star@gmail.com',
+    href: 'mailto:wltn7star@gmail.com',
+    icon: 'mail',
+  },
+  {
+    label: 'GitHub',
+    value: 'github.com/K-jisu',
+    href: 'https://github.com/K-jisu',
+    icon: 'github',
+    external: true,
+  },
+  {
+    label: 'LinkedIn',
+    value: '강지수',
+    href: 'https://www.linkedin.com/in/%EC%A7%80%EC%88%98-%EA%B0%95-bba73235a/',
+    icon: 'linkedin',
+    external: true,
+  },
+];
+
+const ConnectSection = () => {
+  return (
+    <section
+      id="contact"
+      className="relative py-28 md:py-32 px-6 scroll-mt-20 overflow-hidden"
+    >
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-1/2 top-16 h-64 w-64 -translate-x-[75%] rounded-full bg-[#0dccf2]/20 blur-[110px]" />
+        <div className="absolute right-1/2 bottom-8 h-72 w-72 translate-x-[70%] rounded-full bg-[#0dccf2]/10 blur-[120px]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto">
+        <div className="rounded-3xl border border-[#0dccf2]/20 bg-[rgba(34,66,73,0.24)] backdrop-blur-[14px] p-6 md:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
+          <div className="grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-center">
+            <div className="space-y-7">
+              <div className="space-y-4">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#0dccf2]/30 bg-[#0dccf2]/10 px-4 py-1.5">
+                  <Sparkles className="size-4 text-[#0dccf2]" />
+                  <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#0dccf2]">
+                    04. Get In Touch
+                  </span>
+                </div>
+                <h3 className="text-4xl md:text-6xl font-black leading-tight tracking-tight">
+                  함께 일할 기회를
+                  <br />
+                  <span className="text-[#0dccf2] [text-shadow:0_0_16px_rgba(13,204,242,0.35)]">
+                    찾고 있습니다
+                  </span>
+                </h3>
+              </div>
+
+              <p className="max-w-2xl text-base md:text-lg text-slate-300 leading-relaxed">
+                메일로 연락 주시면 확인 후 답장드리겠습니다.
+              </p>
+
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-2">
+                <a
+                  href="mailto:wltn7star@gmail.com"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#0dccf2] px-6 py-3.5 text-[#101f22] font-black tracking-wide hover:translate-y-[-2px] hover:shadow-[0_12px_30px_rgba(13,204,242,0.35)] transition-all"
+                >
+                  <Mail className="size-4" />
+                  <span>메일 보내기</span>
+                  <ArrowUpRight className="size-4" />
+                </a>
+                <a
+                  href="https://github.com/K-jisu"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 text-slate-100 font-semibold hover:border-[#0dccf2]/40 hover:text-[#0dccf2] transition-colors"
+                >
+                  <Image
+                    src="/github.png"
+                    width={16}
+                    height={16}
+                    alt="GitHub"
+                  />
+                  <span>GitHub 보기</span>
+                </a>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              {CONTACT_LINKS.map((item) => {
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target={item.external ? '_blank' : undefined}
+                    rel={item.external ? 'noreferrer' : undefined}
+                    className={`group flex items-center gap-4 rounded-2xl border px-4 py-4 md:px-5 md:py-4 transition-all ${
+                      item.disabled
+                        ? 'pointer-events-none border-white/10 bg-white/[0.03] opacity-60'
+                        : 'border-white/10 bg-white/[0.04] hover:border-[#0dccf2]/30 hover:bg-[#0dccf2]/10'
+                    }`}
+                  >
+                    <div className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-[#0f2428] text-[#0dccf2]">
+                      <Image
+                        src={`/${item.icon}.png`}
+                        width={20}
+                        height={20}
+                        alt={item.label}
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+                        {item.label}
+                      </p>
+                      <p className="truncate text-sm md:text-base font-semibold text-slate-100">
+                        {item.value}
+                      </p>
+                    </div>
+                    {!item.disabled && (
+                      <ArrowUpRight className="size-5 text-slate-500 transition-colors group-hover:text-[#0dccf2]" />
+                    )}
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ConnectSection;
