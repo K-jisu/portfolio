@@ -1,3 +1,6 @@
+'use client';
+
+import { motion, useReducedMotion } from 'motion/react';
 import Image from 'next/image';
 
 const ABOUT_ME_TEXT = [
@@ -48,14 +51,63 @@ const ABOUT_CAREERS = [
   },
 ];
 
+const easeOutExpo = [0.22, 1, 0.36, 1] as const;
+
 const AboutSection = () => {
+  const shouldReduceMotion = useReducedMotion();
+
+  const fadeUp = shouldReduceMotion
+    ? {
+        initial: { opacity: 1, y: 0 },
+        whileInView: { opacity: 1, y: 0 },
+        transition: { duration: 0 },
+      }
+    : {
+        initial: { opacity: 0, y: 24 },
+        whileInView: { opacity: 1, y: 0 },
+        transition: { duration: 0.7, ease: easeOutExpo },
+      };
+
   return (
-    <section id="about" className="py-24 px-6 scroll-mt-20">
-      <div className="max-w-6xl mx-auto space-y-24">
+    <section
+      id="about"
+      className="relative py-24 px-6 scroll-mt-20 overflow-hidden"
+    >
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <motion.div
+          className="absolute left-1/2 top-20 h-72 w-72 -translate-x-[85%] rounded-full bg-[#0dccf2]/12 blur-[120px]"
+          animate={
+            shouldReduceMotion
+              ? { opacity: 1 }
+              : { x: [0, 14, 0], y: [0, -10, 0], scale: [1, 1.04, 1] }
+          }
+          transition={
+            shouldReduceMotion
+              ? { duration: 0 }
+              : { duration: 12, repeat: Infinity, ease: 'easeInOut' }
+          }
+        />
+      </div>
+
+      <motion.div
+        className="max-w-6xl mx-auto space-y-24"
+        initial={shouldReduceMotion ? false : { opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6 }}
+      >
         {/* About ME */}
-        <div className="space-y-12">
-          <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
-            <div className="relative shrink-0">
+        <motion.div className="space-y-12">
+          <motion.div
+            className="flex flex-col md:flex-row gap-8 items-center md:items-start"
+            {...fadeUp}
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <motion.div
+              className="relative shrink-0"
+              whileHover={shouldReduceMotion ? undefined : { y: -4 }}
+              transition={{ duration: 0.25 }}
+            >
               <div className="size-40 md:size-48 rounded-2xl overflow-hidden border-2 border-[#0dccf2]/30 shadow-[0_0_20px_rgba(13,204,242,0.1)]">
                 {/* 나의 프로필 사진 */}
                 {/* <Image
@@ -67,9 +119,13 @@ const AboutSection = () => {
               <div className="absolute -bottom-2 -right-2 bg-[#101f22] border border-[#0dccf2]/50 text-[#0dccf2] text-[10px] font-bold px-2 py-1 rounded-md">
                 JUNIOR
               </div>
-            </div>
+            </motion.div>
 
-            <div className="space-y-4 text-center md:text-left">
+            <motion.div
+              className="space-y-4 text-center md:text-left"
+              {...fadeUp}
+              viewport={{ once: true, amount: 0.2 }}
+            >
               <h2 className="text-[#0dccf2] font-bold tracking-[0.3em] uppercase text-xs">
                 01. Identity
               </h2>
@@ -87,24 +143,56 @@ const AboutSection = () => {
               </h3>
               <p className="text-lg text-slate-500 leading-relaxed whitespace-normal break-keep hidden md:block">
                 {ABOUT_ME_TEXT.map((text, index) => (
-                  <span key={index} className="block mt-2">
+                  <motion.span
+                    key={index}
+                    className="block mt-2"
+                    initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.6 }}
+                    transition={
+                      shouldReduceMotion
+                        ? { duration: 0 }
+                        : {
+                            delay: 0.1 + index * 0.1,
+                            duration: 0.45,
+                            ease: easeOutExpo,
+                          }
+                    }
+                  >
                     {text}
-                  </span>
+                  </motion.span>
                 ))}
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div className="space-y-6 pt-4">
+          <motion.div
+            className="space-y-6 pt-4"
+            {...fadeUp}
+            viewport={{ once: true, amount: 0.2 }}
+          >
             <h4 className="font-bold text-sm uppercase tracking-widest flex items-center gap-2">
               <span className="size-1 bg-[#0dccf2]"></span> Core Tech Stack
             </h4>
 
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
-              {ABOUT_SKILLS.map((skill) => (
-                <div
+              {ABOUT_SKILLS.map((skill, index) => (
+                <motion.div
                   key={skill.label}
                   className="p-4 rounded-xl flex flex-col items-center justify-center gap-2 group transition-all bg-[rgba(34,66,73,0.2)] backdrop-blur-[12px] border border-[rgba(13,204,242,0.1)] hover:border-[rgba(13,204,242,0.4)] hover:shadow-[0_0_20px_rgba(13,204,242,0.1)]"
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={
+                    shouldReduceMotion
+                      ? { duration: 0 }
+                      : {
+                          delay: 0.05 + index * 0.035,
+                          duration: 0.45,
+                          ease: easeOutExpo,
+                        }
+                  }
+                  whileHover={shouldReduceMotion ? undefined : { y: -3 }}
                 >
                   <Image
                     src={`/${skill.icon}.png`}
@@ -116,14 +204,19 @@ const AboutSection = () => {
                   <span className="material-symbols-outlined text-[#0dccf2] group-hover:scale-110 transition-transform">
                     {skill.label}
                   </span>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Career Timeline */}
-        <div id="career" className="pt-12">
+        <motion.div
+          id="career"
+          className="pt-12"
+          {...fadeUp}
+          viewport={{ once: true, amount: 0.2 }}
+        >
           <div className="flex items-center gap-4 mb-12">
             <div className="space-y-1">
               <h2 className="text-[#0dccf2] font-bold tracking-[0.3em] uppercase text-xs">
@@ -140,7 +233,22 @@ const AboutSection = () => {
             <div className="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#0dccf2] to-transparent opacity-20"></div>
             <div className="space-y-10">
               {ABOUT_CAREERS.map((item, index) => (
-                <div className="relative pl-12 md:pl-20 group" key={index}>
+                <motion.div
+                  className="relative pl-12 md:pl-20 group"
+                  key={index}
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={
+                    shouldReduceMotion
+                      ? { duration: 0 }
+                      : {
+                          delay: 0.08 + index * 0.12,
+                          duration: 0.55,
+                          ease: easeOutExpo,
+                        }
+                  }
+                >
                   <div className="absolute left-4 md:left-8 top-1 -translate-x-1/2 size-3 rounded-full bg-[#0dccf2] shadow-[0_0_10px_#0dccf2] z-10 border-2 border-[#101f22]"></div>
                   <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-2">
                     <div>
@@ -162,12 +270,12 @@ const AboutSection = () => {
                       ))}
                     </ul>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
