@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  fadeUp,
-  floatLoop,
-  sectionReveal,
-} from '@/lib/motion';
+import { fadeUp, floatLoop, sectionReveal } from '@/lib/motion';
 import { motion, useReducedMotion } from 'motion/react';
 import Image from 'next/image';
 
@@ -93,11 +89,13 @@ const AboutSection = () => {
             >
               <div className="size-40 md:size-48 rounded-2xl overflow-hidden border-2 border-[#0dccf2]/30 shadow-[0_0_20px_rgba(13,204,242,0.1)]">
                 {/* 나의 프로필 사진 */}
-                {/* <Image
-                  src={''}
+                <Image
+                  src={'/profile.jpg'}
                   alt="Alex Profile"
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                /> */}
+                  width={192}
+                  height={192}
+                  className="w-full h-full object-cover transition-all duration-500"
+                />
               </div>
               <div className="absolute -bottom-2 -right-2 bg-[#101f22] border border-[#0dccf2]/50 text-[#0dccf2] text-[10px] font-bold px-2 py-1 rounded-md">
                 JUNIOR
@@ -129,12 +127,7 @@ const AboutSection = () => {
                   <motion.span
                     key={index}
                     className="block mt-2"
-                    {...fadeUp(
-                      shouldReduceMotion,
-                      0.1 + index * 0.1,
-                      14,
-                      0.45
-                    )}
+                    {...fadeUp(shouldReduceMotion, 0.1 + index * 0.1, 14, 0.45)}
                     viewport={{ once: true, amount: 0.6 }}
                   >
                     {text}
@@ -162,7 +155,7 @@ const AboutSection = () => {
                     shouldReduceMotion,
                     0.05 + index * 0.035,
                     16,
-                    0.45
+                    0.45,
                   )}
                   viewport={{ once: true, amount: 0.4 }}
                   whileHover={shouldReduceMotion ? undefined : { y: -3 }}
@@ -209,12 +202,7 @@ const AboutSection = () => {
                 <motion.div
                   className="relative pl-12 md:pl-20 group"
                   key={index}
-                  {...fadeUp(
-                    shouldReduceMotion,
-                    0.08 + index * 0.12,
-                    20,
-                    0.55
-                  )}
+                  {...fadeUp(shouldReduceMotion, 0.08 + index * 0.12, 20, 0.55)}
                   viewport={{ once: true, amount: 0.25 }}
                 >
                   <div className="absolute left-4 md:left-8 top-1 -translate-x-1/2 size-3 rounded-full bg-[#0dccf2] shadow-[0_0_10px_#0dccf2] z-10 border-2 border-[#101f22]"></div>
