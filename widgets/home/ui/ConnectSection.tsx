@@ -52,12 +52,12 @@ const ConnectSection = () => {
       </div>
 
       <div className="max-w-7xl mx-auto">
-        <div className="rounded-3xl border border-[#0dccf2]/20 bg-[rgba(34,66,73,0.24)] backdrop-blur-[14px] p-6 md:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
+        <div className="rounded-3xl  backdrop-blur-[14px] p-6 md:p-10">
           <div className="grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-center">
             <div className="space-y-7">
               <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 rounded-full border border-[#0dccf2]/30 bg-[#0dccf2]/10 px-4 py-1.5">
-                  <Sparkles className="size-4 text-[#0dccf2]" />
+                <div className="inline-flex items-center gap-2 py-1.5">
+                  {/* <Sparkles className="size-4 text-[#0dccf2]" /> */}
                   <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#0dccf2]">
                     04. Get In Touch
                   </span>
@@ -72,7 +72,7 @@ const ConnectSection = () => {
               </div>
 
               <p className="max-w-2xl text-base md:text-lg text-slate-300 leading-relaxed">
-                메일로 연락 주시면 확인 후 답장드리겠습니다.
+                메일로 연락 주시면 빠르게 확인 후 답장드리겠습니다.
               </p>
 
               <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-2">
