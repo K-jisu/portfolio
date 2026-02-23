@@ -27,11 +27,12 @@ const Header = () => {
         </nav>
         {/* Todo : PDF 이력서 다운로드 */}
         <a
-          href="#"
+          href="/강지수-포트폴리오.pdf"
+          download="강지수-포트폴리오.pdf"
           className="bg-[#0dccf2]/10 border border-[#0dccf2] text-[#0dccf2] hover:bg-[#0dccf2] hover:text-[#101f22] transition-all px-5 py-2 rounded-lg text-sm font-bold flex items-center gap-2"
         >
           <span>PDF</span>
-          <span className="material-symbols-outlined text-sm">download</span>
+          <span className="material-symbols-outlined text-sm">Download</span>
         </a>
       </div>
     </header>
